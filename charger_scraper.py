@@ -1,10 +1,11 @@
+import asyncio
 import requests
 import ijson
 import json
 
 from dynamic_json import JsonHandler
 
-from requests_html import HTMLSession
+from requests_html import AsyncHTMLSession
 from bs4 import BeautifulSoup
 from collections import deque 
 from dataclasses import asdict
@@ -17,15 +18,15 @@ HEADERS = {
     "User-Agent" : '''Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'''
 } 
 
-def request_link(link: str) -> Optional[requests.Response]: 
+async def request_link(link: str) -> Optional[requests.Response]: 
     tries = 0 
     response = None
-    session = HTMLSession() 
+    asession = AsyncHTMLSession() 
 
     while tries < 5: 
         try: 
-            response = session.get(link, headers=HEADERS)
-            response.html.render(sleep=5)
+            response = await asession.get(link, headers=HEADERS)
+            await response.html.arender(sleep=5)
             response.raise_for_status()
             break 
         except Timeout as e: 
@@ -54,8 +55,8 @@ def check_num_pages(response: str) -> str:
     return txt.split(' ')[-1] 
 
 
-def fetch_car_links(response: requests.Response) -> list: 
-    soup = BeautifulSoup(response.text, 'lxml')
+async def fetch_car_links(response: requests.Response) -> list: 
+    soup = BeautifulSoup(await response.html.text, 'lxml')
     
     car_links = soup.find_all('a', href=True) 
     car_links = [car_link['href'] for car_link in car_links if "/car/" in car_link['href']]  
@@ -119,7 +120,7 @@ def fetch_performance_port(performance_table: str) -> str:
 
     return acceleration_60 
 
-def main(): 
+async def main(): 
     JSON_FILENAME = "ev.json"
     # NOTE: rs-y is in relation to the year of the vehicle, should be updated 5 years ahead of current year
     page_list_links = "https://ev-database.org/#group=vehicle-group&rs-pr=10000_100000&rs-er=0_1000&rs-ld=0_1000&rs-ac=2_23&rs-dcfc=0_400&rs-ub=10_200&rs-tw=0_3000&rs-ef=100_350&rs-sa=-1_5&rs-w=1000_3500&rs-c=0_5000&rs-y=2010_2030&q=byd&s=1&p=0-10" 
@@ -130,27 +131,27 @@ def main():
     page_num = 0
 
     # Fetch total Pages
-    response = request_link(page_list_links) 
+    response = await request_link(page_list_links) 
     if response is None: 
         return 
 
-    total_pages = check_num_pages(response.text)
+    total_pages = check_num_pages(await response.html.text)
     print(total_pages)
     total_pages = int(total_pages)
 
     while page_num <= total_pages: 
-        response = request_link(page_list_links + f"&p={page_num}-10")
+        response = await request_link(page_list_links + f"&p={page_num}-10")
 
         if response is None:
             return
 
-        car_links = fetch_car_links(response)
+        car_links = await fetch_car_links(response)
         car_page_links.extend(car_links)
         page_num += 1
  
     while car_page_links: 
          link = car_page_links.pop(); 
-         response = request_link(car_link + link)
+         response = await request_link(car_link + link)
          ev = fetch_car_info(link, response) 
           
          if len(car_page_links) == 0: 
@@ -162,4 +163,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main() 
+    asyncio.run(main())
