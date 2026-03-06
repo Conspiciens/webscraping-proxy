@@ -19,12 +19,12 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
     tries = 0 
     response = None
 
-    print(link)
     while tries < 5: 
         try: 
             response = await assesion.get(link, timeout=30)
             await response.html.arender()
             response.raise_for_status()
+            await asyncio.sleep(7) 
             return response
         except Timeout as e: 
             print(f"Timeout Occured: {e}");
