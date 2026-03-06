@@ -22,7 +22,7 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
     print(link)
     while tries < 5: 
         try: 
-            response = await assesion.get(link, timeout=5)
+            response = await assesion.get(link, timeout=30)
             await response.html.arender()
             response.raise_for_status()
             return response
@@ -38,7 +38,7 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
             print(f"Request Error Occured: {e}");
             tries += 1 
     
-    await asyncio.sleep(3)
+    await asyncio.sleep(7)
     return None 
 
 def check_num_pages(response: str) -> str: 
@@ -117,7 +117,8 @@ def fetch_performance_port(performance_table: str) -> str:
 async def main(): 
     asession = AsyncHTMLSession() 
     asession.headers.update({
-        "User-Agent" : '''Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'''
+        "User-Agent" : '''Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36''',
+        "Connection": "keep-alive"
     })
 
     JSON_FILENAME = "ev.json"
