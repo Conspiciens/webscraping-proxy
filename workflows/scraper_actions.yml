@@ -5,10 +5,14 @@ on:
     # Runs every day at midnight UTC
     - cron: '0 0 * * *' 
   # Allows manual triggering from the GitHub Actions tab
+  workflow_dispatch: 
 
 jobs:
   test_schedule:
     runs-on: ubuntu-latest
+
+    permissions: 
+        contents: write
 
     steps:
       - name: Check out repository
@@ -32,8 +36,8 @@ jobs:
 
       - name: Commit and push if changes
         run: |
-          git config --global user.name 'Conspiciens'
-          git config --global user.email 'fernandezjohann08@gmail.com'
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add .
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update scraped data" && git push)
         # This step commits any newly scraped data to the repo, ensuring history is clean
