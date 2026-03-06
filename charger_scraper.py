@@ -2,6 +2,7 @@ import asyncio
 import requests
 import ijson
 import json
+import time
 
 from dynamic_json import JsonHandler
 
@@ -14,21 +15,16 @@ from requests import RequestException, HTTPError, ConnectionError, Timeout, TooM
 from collections import deque
 from dataclasses_types import Car
 
-HEADERS = {
-    "User-Agent" : '''Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'''
-} 
-
-async def request_link(link: str) -> Optional[requests.Response]: 
+async def request_link(assesion, link: str) -> Optional[requests.Response]: 
     tries = 0 
     response = None
-    asession = AsyncHTMLSession() 
 
     while tries < 5: 
         try: 
-            response = await asession.get(link, headers=HEADERS)
-            await response.html.arender(sleep=5)
+            response = await assesion.get(link)
+            # await response.html.arender(timeout=60, sleep=5) 
             response.raise_for_status()
-            break 
+            return response
         except Timeout as e: 
             print(f"Timeout Occured: {e}");
             tries += 1
@@ -39,13 +35,10 @@ async def request_link(link: str) -> Optional[requests.Response]:
         except TooManyRedirects as e: 
             print(f"Too Many Redirects Occured: {e}");
             print(f"Request Error Occured: {e}");
-            tries += 1
-        finally: 
-            tries += 1    
+            tries += 1 
     
-    if response == None: 
-        return None 
-    return response  
+    await asyncio.sleep(3)
+    return None 
 
 def check_num_pages(response: str) -> str: 
     soup = BeautifulSoup(response, 'lxml') 
@@ -121,6 +114,18 @@ def fetch_performance_port(performance_table: str) -> str:
     return acceleration_60 
 
 async def main(): 
+    asession = AsyncHTMLSession(
+        browser_args=[
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage', # Prevents crashes on low-memory/containerized envs
+            '--disable-extensions'
+        ]
+    ) 
+    asession.headers.update({
+        "User-Agent" : '''Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'''
+    })
+
     JSON_FILENAME = "ev.json"
     # NOTE: rs-y is in relation to the year of the vehicle, should be updated 5 years ahead of current year
     page_list_links = "https://ev-database.org/#group=vehicle-group&rs-pr=10000_100000&rs-er=0_1000&rs-ld=0_1000&rs-ac=2_23&rs-dcfc=0_400&rs-ub=10_200&rs-tw=0_3000&rs-ef=100_350&rs-sa=-1_5&rs-w=1000_3500&rs-c=0_5000&rs-y=2010_2030&q=byd&s=1&p=0-10" 
@@ -131,7 +136,7 @@ async def main():
     page_num = 0
 
     # Fetch total Pages
-    response = await request_link(page_list_links) 
+    response = await request_link(asession, page_list_links) 
     if response is None: 
         return 
 
@@ -140,7 +145,7 @@ async def main():
     total_pages = int(total_pages)
 
     while page_num <= total_pages: 
-        response = await request_link(page_list_links + f"&p={page_num}-10")
+        response = await request_link(asession, page_list_links + f"&p={page_num}-10")
 
         if response is None:
             return
@@ -151,7 +156,7 @@ async def main():
  
     while car_page_links: 
          link = car_page_links.pop(); 
-         response = await request_link(car_link + link)
+         response = await request_link(asession, car_link + link)
          ev = fetch_car_info(link, response) 
           
          if len(car_page_links) == 0: 
@@ -161,6 +166,7 @@ async def main():
          manager.to_json_file(ev, link, False)
     manager.close_json_file()
 
+    asession.close() 
 
 if __name__ == '__main__':
     asyncio.run(main())
