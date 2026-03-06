@@ -24,7 +24,7 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
             response = await assesion.get(link, timeout=30)
             await response.html.arender()
             response.raise_for_status()
-            await asyncio.sleep(7) 
+            await asyncio.sleep(20) 
             return response
         except Timeout as e: 
             print(f"Timeout Occured: {e}");
@@ -153,6 +153,9 @@ async def main():
          link = car_page_links.pop(); 
          response = await request_link(asession, car_link + link)
          ev = fetch_car_info(link, response) 
+        
+         if len(car_page_links) % 2 == 0: 
+             asynico.sleep(10)
           
          if len(car_page_links) == 0: 
             manager.to_json_file(ev, link, True)    
