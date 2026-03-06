@@ -19,6 +19,7 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
     tries = 0 
     response = None
 
+    print(link)
     while tries < 5: 
         try: 
             response = await assesion.get(link, timeout=5)
@@ -114,14 +115,7 @@ def fetch_performance_port(performance_table: str) -> str:
     return acceleration_60 
 
 async def main(): 
-    asession = AsyncHTMLSession(
-        browser_args=[
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage', # Prevents crashes on low-memory/containerized envs
-            '--disable-extensions'
-        ] 
-    ) 
+    asession = AsyncHTMLSession() 
     asession.headers.update({
         "User-Agent" : '''Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'''
     })
