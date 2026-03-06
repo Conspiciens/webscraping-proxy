@@ -21,8 +21,8 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
 
     while tries < 5: 
         try: 
-            response = await assesion.get(link)
-            # await response.html.arender(timeout=60, sleep=5) 
+            response = await assesion.get(link, timeout=5)
+            await response.html.arender()
             response.raise_for_status()
             return response
         except Timeout as e: 
@@ -49,7 +49,7 @@ def check_num_pages(response: str) -> str:
 
 
 async def fetch_car_links(response: requests.Response) -> list: 
-    soup = BeautifulSoup(response.html.text, 'lxml')
+    soup = BeautifulSoup(response.html.raw_html, 'lxml')
     
     car_links = soup.find_all('a', href=True) 
     car_links = [car_link['href'] for car_link in car_links if "/car/" in car_link['href']]  
@@ -120,7 +120,7 @@ async def main():
             '--disable-setuid-sandbox',
             '--disable-dev-shm-usage', # Prevents crashes on low-memory/containerized envs
             '--disable-extensions'
-        ]
+        ] 
     ) 
     asession.headers.update({
         "User-Agent" : '''Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'''
@@ -140,7 +140,7 @@ async def main():
     if response is None: 
         return 
 
-    total_pages = check_num_pages(response.html.text)
+    total_pages = check_num_pages(response.html.raw_html)
     print(total_pages)
     total_pages = int(total_pages)
 
