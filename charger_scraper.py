@@ -128,7 +128,7 @@ async def main():
 
     JSON_FILENAME = "ev.json"
     # NOTE: rs-y is in relation to the year of the vehicle, should be updated 5 years ahead of current year
-    page_list_links = "https://ev-database.org/#group=vehicle-group&rs-pr=10000_100000&rs-er=0_1000&rs-ld=0_1000&rs-ac=2_23&rs-dcfc=0_400&rs-ub=10_200&rs-tw=0_3000&rs-ef=100_350&rs-sa=-1_5&rs-w=1000_3500&rs-c=0_5000&rs-y=2010_2030&q=byd&s=1&p=0-10" 
+    page_list_links = "https://ev-database.org/#group=vehicle-group&rs-pr=10000_100000&rs-er=0_1000&rs-ld=0_1000&rs-ac=2_23&rs-dcfc=0_400&rs-ub=10_200&rs-tw=0_3000&rs-ef=100_350&rs-sa=-1_5&rs-w=1000_3500&rs-c=0_5000&rs-y=2010_2030&q=byd&s=1" 
     car_link = "https://ev-database.org"
 
     manager = JsonHandler(JSON_FILENAME) 
