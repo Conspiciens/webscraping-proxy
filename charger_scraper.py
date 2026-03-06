@@ -4,6 +4,7 @@ import json
 
 from dynamic_json import JsonHandler
 
+from requests_html import HTMLSession
 from bs4 import BeautifulSoup
 from collections import deque 
 from dataclasses import asdict
@@ -19,10 +20,12 @@ HEADERS = {
 def request_link(link: str) -> Optional[requests.Response]: 
     tries = 0 
     response = None
+    session = HTMLSession() 
 
     while tries < 5: 
         try: 
-            response = requests.get(link, headers=HEADERS)
+            response = session.get(link, headers=HEADERS)
+            response.html.render(sleep=5)
             response.raise_for_status()
             break 
         except Timeout as e: 
@@ -43,10 +46,11 @@ def request_link(link: str) -> Optional[requests.Response]:
         return None 
     return response  
 
-def check_num_pages(response: str) -> list: 
+def check_num_pages(response: str) -> str: 
     soup = BeautifulSoup(response, 'lxml') 
     
     txt = soup.find(class_='jplist-label').text
+    print(txt)
     return txt.split(' ')[-1] 
 
 
@@ -118,18 +122,21 @@ def fetch_performance_port(performance_table: str) -> str:
 def main(): 
     JSON_FILENAME = "ev.json"
     # NOTE: rs-y is in relation to the year of the vehicle, should be updated 5 years ahead of current year
-    page_list_links = "https://ev-database.org/#group=vehicle-group&rs-pr=10000_100000&rs-er=0_1000&rs-ld=0_1000&rs-ac=2_23&rs-dcfc=0_400&rs-ub=10_200&rs-tw=0_2500&rs-ef=100_350&rs-sa=-1_5&rs-w=1000_3500&rs-c=0_5000&rs-y=2010_2030&s=1" 
+    page_list_links = "https://ev-database.org/#group=vehicle-group&rs-pr=10000_100000&rs-er=0_1000&rs-ld=0_1000&rs-ac=2_23&rs-dcfc=0_400&rs-ub=10_200&rs-tw=0_3000&rs-ef=100_350&rs-sa=-1_5&rs-w=1000_3500&rs-c=0_5000&rs-y=2010_2030&q=byd&s=1&p=0-10" 
     car_link = "https://ev-database.org"
 
     manager = JsonHandler(JSON_FILENAME) 
     car_page_links = deque()
+    page_num = 0
 
     # Fetch total Pages
-    response = request_link(car_link) 
+    response = request_link(page_list_links) 
     if response is None: 
         return 
 
-    total_pages = int(check_num_page(response)) 
+    total_pages = check_num_pages(response.text)
+    print(total_pages)
+    total_pages = int(total_pages)
 
     while page_num <= total_pages: 
         response = request_link(page_list_links + f"&p={page_num}-10")
