@@ -37,8 +37,6 @@ def request_link(link: str) -> Optional[requests.Response]:
             print(f"Request Error Occured: {e}");
             tries += 1
         finally: 
-            if isSuccess == True: 
-                break
             tries += 1    
     
     if response == None: 
