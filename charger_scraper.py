@@ -56,7 +56,7 @@ def check_num_pages(response: str) -> str:
 
 
 async def fetch_car_links(response: requests.Response) -> list: 
-    soup = BeautifulSoup(await response.html.text, 'lxml')
+    soup = BeautifulSoup(response.html.text, 'lxml')
     
     car_links = soup.find_all('a', href=True) 
     car_links = [car_link['href'] for car_link in car_links if "/car/" in car_link['href']]  
@@ -135,7 +135,7 @@ async def main():
     if response is None: 
         return 
 
-    total_pages = check_num_pages(await response.html.text)
+    total_pages = check_num_pages(response.html.text)
     print(total_pages)
     total_pages = int(total_pages)
 
