@@ -1,0 +1,22 @@
+{
+"/car/3195/BYD-DOLPHIN-SURF-432-kWh-Comfort": {
+    "link": "/car/3195/BYD-DOLPHIN-SURF-432-kWh-Comfort",
+    "vehicle": "BYD-DOLPHIN-SURF-432-kWh-Comfort",
+    "battery_type": "Lithium-ion",
+    "battery_size": "46.0 kWh",
+    "combined_mileage_km": "220 km",
+    "port": "CCS",
+    "acceleration_0_60": "9.1 sec",
+    "discontinued": false
+},
+"/car/3125/BYD-ATTO-2": {
+    "link": "/car/3125/BYD-ATTO-2",
+    "vehicle": "BYD-ATTO-2",
+    "battery_type": "Lithium-ion",
+    "battery_size": "51.1 kWh",
+    "combined_mileage_km": "205 km",
+    "port": "CCS",
+    "acceleration_0_60": "7.9 sec",
+    "discontinued": false
+}
+}
