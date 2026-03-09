@@ -6,7 +6,7 @@ import time
 
 from dynamic_json import JsonHandler
 
-from requests_html import AsyncHTMLSession
+from requests_html import AsyncHTMLSession, MaxRetries
 from bs4 import BeautifulSoup
 from collections import deque 
 from dataclasses import asdict
@@ -21,10 +21,11 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
 
     while tries < 5: 
         try: 
-            response = await assesion.get(link, timeout=30)
-            await response.html.arender()
-            response.raise_for_status()
+            print(f"Requesting link: {link}") 
             await asyncio.sleep(20) 
+            response = await assesion.get(link, timeout=30)
+            await response.html.arender(timeout=20)
+            response.raise_for_status()
             return response
         except Timeout as e: 
             print(f"Timeout Occured: {e}");
@@ -33,23 +34,24 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
             print(f"Connection Error Occured: {e}");
             tries += 1
             break
+        except MaxRetries as e: 
+            print(f"Max Retries: {e}")
+            break  
         except TooManyRedirects as e: 
             print(f"Too Many Redirects Occured: {e}");
             print(f"Request Error Occured: {e}");
             tries += 1 
     
-    await asyncio.sleep(7)
     return None 
 
 def check_num_pages(response: str) -> str: 
     soup = BeautifulSoup(response, 'lxml') 
     
     txt = soup.find(class_='jplist-label').text
-    print(txt)
     return txt.split(' ')[-1] 
 
 
-async def fetch_car_links(response: requests.Response) -> list: 
+def fetch_car_links(response: requests.Response) -> list: 
     soup = BeautifulSoup(response.html.raw_html, 'lxml')
     
     car_links = soup.find_all('a', href=True) 
@@ -72,9 +74,6 @@ def fetch_car_info(link: str, response: requests.Response) -> Car:
     (kw, battery_type) = fetch_battery_info(battery_table)
     car_port = fetch_charging_port(charging_table) 
     acceleration = fetch_performance_port(performance_table) 
-
-    print(f"Combined Range: {combined_range}") 
-    print(f"KW: {kw}") 
     
     return Car(link, vehicle_name, battery_type, 
         kw, combined_range, car_port, acceleration, is_discontinued)  
@@ -100,7 +99,6 @@ def fetch_battery_info(battery_table: str) -> tuple:
 
 def fetch_charging_port(charging_table: str) -> str: 
     charging_rows = charging_table.find_all('td') 
-    print(charging_rows)
     charging_type = charging_rows[11].text 
 
     return charging_type
@@ -109,7 +107,6 @@ def fetch_charging_port(charging_table: str) -> str:
 def fetch_performance_port(performance_table: str) -> str: 
     performance_rows = performance_table.find_all('td')
 
-    print(performance_rows)
     acceleration_60 = performance_rows[1].text
 
     return acceleration_60 
@@ -117,7 +114,7 @@ def fetch_performance_port(performance_table: str) -> str:
 async def main(): 
     asession = AsyncHTMLSession() 
     asession.headers.update({
-        "User-Agent" : '''Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36''',
+        "User-Agent" : '''Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36''',
         "Connection": "keep-alive"
     })
 
@@ -136,7 +133,6 @@ async def main():
         return 
 
     total_pages = check_num_pages(response.html.raw_html)
-    print(total_pages)
     total_pages = int(total_pages)
 
     while page_num <= total_pages: 
@@ -145,17 +141,22 @@ async def main():
         if response is None:
             return
 
-        car_links = await fetch_car_links(response)
-        car_page_links.extend(car_links)
+        car_links = fetch_car_links(response)
+        car_page_links.extend(list(set(car_links)))
         page_num += 1
  
-    while car_page_links: 
-         link = car_page_links.pop(); 
+    print(len(car_page_links))
+    for i in range(len(car_page_links)): 
+        print(car_page_links[i]) 
+
+    while len(car_page_links) > 0: 
+         link = car_page_links.popleft(); 
+         print(link)
          response = await request_link(asession, car_link + link)
          ev = fetch_car_info(link, response) 
         
          if len(car_page_links) % 2 == 0: 
-             asynico.sleep(10)
+            await asyncio.sleep(10)
           
          if len(car_page_links) == 0: 
             manager.to_json_file(ev, link, True)    
@@ -164,7 +165,7 @@ async def main():
          manager.to_json_file(ev, link, False)
     manager.close_json_file()
 
-    asession.close() 
+    await asession.close() 
 
 if __name__ == '__main__':
     asyncio.run(main())
