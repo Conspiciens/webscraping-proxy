@@ -145,7 +145,7 @@ async def main():
         car_page_links.extend(car_links)
         page_num += 1
  
-    car_page_links = list(set(car_page_links))
+    car_page_links = deque(list(set(car_page_links)))
 
     while len(car_page_links) > 0: 
          link = car_page_links.popleft(); 
