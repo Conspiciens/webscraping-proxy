@@ -16,6 +16,7 @@ from collections import deque
 from dataclasses_types import Car
 
 async def request_link(assesion, link: str) -> Optional[requests.Response]: 
+    stand_off = 2
     tries = 0 
     response = None
 
@@ -36,7 +37,9 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
             break
         except MaxRetries as e: 
             print(f"Max Retries: {e}")
-            break  
+            await asynico.sleep(stand_off)
+            stand_off = stand_off ** 2
+            tries += 1
         except TooManyRedirects as e: 
             print(f"Too Many Redirects Occured: {e}");
             print(f"Request Error Occured: {e}");
