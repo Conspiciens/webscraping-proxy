@@ -142,12 +142,10 @@ async def main():
             return
 
         car_links = fetch_car_links(response)
-        car_page_links.extend(list(set(car_links)))
+        car_page_links.extend(car_links)
         page_num += 1
  
-    print(len(car_page_links))
-    for i in range(len(car_page_links)): 
-        print(car_page_links[i]) 
+    car_page_links = list(set(car_page_links))
 
     while len(car_page_links) > 0: 
          link = car_page_links.popleft(); 
