@@ -24,7 +24,7 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
             print(f"Requesting link: {link}") 
             await asyncio.sleep(20) 
             response = await assesion.get(link, timeout=30)
-            await response.html.arender(timeout=20)
+            await response.html.arender(wait=2.0, timeout=20)
             response.raise_for_status()
             return response
         except Timeout as e: 
@@ -115,21 +115,20 @@ async def main():
     asession = AsyncHTMLSession() 
     asession.headers.update({
         "User-Agent" : '''Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36''',
-        "Connection": "keep-alive"
+        "Connection": "keep-alive",
     })
 
     JSON_FILENAME = "ev.json"
     # NOTE: rs-y is in relation to the year of the vehicle, should be updated 5 years ahead of current year
     car_link = "https://ev-database.org"
-    page_list_links = "https://ev-database.org/#group=vehicle-group&rs-pr=10000_100000&rs-er=0_1000&rs-ld=0_1000&rs-ac=2_23&rs-dcfc=0_400&rs-ub=10_200&rs-tw=0_3000&rs-ef=100_350&rs-sa=-1_5&rs-w=1000_3500&rs-c=0_5000&rs-y=2010_2030&s=1&p=0-10"
-
+    page_list_links = "https://ev-database.org/#group=vehicle-group&rs-pr=10000_100000&rs-er=0_1000&rs-ld=0_1000&rs-ac=2_23&rs-dcfc=0_400&rs-ub=10_200&rs-tw=0_3000&rs-ef=100_350&rs-sa=-1_5&rs-w=1000_3500&rs-c=0_5000&rs-y=2010_2030&s=1"
 
     manager = JsonHandler(JSON_FILENAME) 
     car_page_links = deque()
     page_num = 0
 
     # Fetch total Pages
-    response = await request_link(asession, page_list_links) 
+    response = await request_link(asession, page_list_links + f"&p={page_num}-10") 
     if response is None: 
         return 
 
@@ -143,6 +142,7 @@ async def main():
             return
 
         car_links = fetch_car_links(response)
+        print(f"Car links: {car_links}") 
         car_page_links.extend(car_links)
         page_num += 1
  
