@@ -28,6 +28,13 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
             await response.html.arender(wait=2.0, timeout=20)
             response.raise_for_status()
             return response
+        except HTTPError as e: 
+            if e.response.status_code == 429: 
+                await asynico.sleep(stand_off)
+                stand_off = stand_off ** 2
+                print(f"Issue with attempting to connect: {link}, Attempt: {tries}") 
+                tries += 1 
+                continue 
         except Timeout as e: 
             print(f"Timeout Occured: {e}");
             tries += 1
@@ -145,11 +152,13 @@ async def main():
             return
 
         car_links = fetch_car_links(response)
-        print(f"Car links: {car_links}") 
         car_page_links.extend(car_links)
         page_num += 1
  
     car_page_links = deque(list(set(car_page_links)))
+
+    # Sleep a minute before making the next request
+    await asyncio.sleep(60) 
 
     while len(car_page_links) > 0: 
          link = car_page_links.popleft(); 
