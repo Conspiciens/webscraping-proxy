@@ -16,7 +16,7 @@ from collections import deque
 from dataclasses_types import Car
 
 async def request_link(assesion, link: str) -> Optional[requests.Response]: 
-    stand_off = 4
+    stand_off = 2
     tries = 0 
     response = None
 
@@ -31,7 +31,7 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
         except HTTPError as e: 
             if e.response.status_code == 429: 
                 await asyncio.sleep(stand_off)
-                stand_off = stand_off ** 4
+                stand_off = 2 ** stand_off
                 print(f"Issue with attempting to connect: {link}, Attempt: {tries}") 
                 tries += 1 
                 continue 
