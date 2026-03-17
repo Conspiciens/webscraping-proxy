@@ -29,12 +29,11 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
             response.raise_for_status()
             return response
         except HTTPError as e: 
-            if e.response.status_code == 429: 
-                await asyncio.sleep(stand_off)
-                stand_off = 2 ** stand_off
-                print(f"Issue with attempting to connect: {link}, Attempt: {tries}") 
-                tries += 1 
-                continue 
+            await asyncio.sleep(2 ** stand_off)
+            stand_off += 1
+            print(f"Issue with attempting to connect: {link}, Attempt: {tries}") 
+            tries += 1 
+            continue 
         except Timeout as e: 
             print(f"Timeout Occured: {e}");
             tries += 1
