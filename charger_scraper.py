@@ -15,6 +15,12 @@ from requests import RequestException, HTTPError, ConnectionError, Timeout, TooM
 from collections import deque
 from dataclasses_types import Car
 
+user_agents = [
+ "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36", 
+ "", 
+ "" 
+] 
+
 async def request_link(assesion, link: str) -> Optional[requests.Response]: 
     stand_off = 5
     tries = 0 
@@ -29,6 +35,7 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
             response.raise_for_status()
             return response
         except HTTPError as e: 
+            print(f"Seconds waiting: { 2 ** stand_off }") 
             await asyncio.sleep(2 ** stand_off)
             stand_off += 1
             print(f"Issue with attempting to connect: {link}, Attempt: {tries}") 
@@ -163,6 +170,9 @@ async def main():
          link = car_page_links.popleft(); 
          print(link)
          response = await request_link(asession, car_link + link)
+         if response == None: 
+            print(f"Breaking early due to {car_link + link}") 
+            break 
          ev = fetch_car_info(link, response) 
         
          if len(car_page_links) % 2 == 0: 
