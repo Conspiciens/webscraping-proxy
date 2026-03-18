@@ -16,7 +16,7 @@ from collections import deque
 from dataclasses_types import Car
 
 async def request_link(assesion, link: str) -> Optional[requests.Response]: 
-    stand_off = 3
+    stand_off = 5
     tries = 0 
     response = None
 
