@@ -22,7 +22,7 @@ user_agents = [
 ] 
 
 async def request_link(assesion, link: str) -> Optional[requests.Response]: 
-    stand_off = 5
+    stand_off = 6
     tries = 0 
     response = None
 
@@ -175,6 +175,7 @@ async def main():
             break 
          ev = fetch_car_info(link, response) 
         
+         await asyncio.sleep(30) 
          if len(car_page_links) % 2 == 0: 
             await asyncio.sleep(10)
           
