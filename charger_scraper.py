@@ -35,6 +35,7 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
             response.raise_for_status()
             return response
         except HTTPError as e: 
+            print(f"Error: {e}") 
             print(f"Seconds waiting: { 2 ** stand_off }") 
             await asyncio.sleep(2 ** stand_off)
             stand_off += 1
