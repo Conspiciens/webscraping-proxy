@@ -17,7 +17,7 @@ from dataclasses_types import Car
 
 user_agents = [
  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36", 
- "", 
+ "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0", 
  "" 
 ] 
 
@@ -37,7 +37,14 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
         except HTTPError as e: 
             print(f"Error: {e}") 
             print(f"Seconds waiting: { 2 ** stand_off }") 
+            asession.close() 
+
             await asyncio.sleep(2 ** stand_off)
+            asession = AsyncHTMLSession() 
+            asession.headers.update({
+                "User-Agent" : f'''{user_agent[1]}''',
+                "Connection": "keep-alive",
+            }) 
             stand_off += 1
             print(f"Issue with attempting to connect: {link}, Attempt: {tries}") 
             tries += 1 
