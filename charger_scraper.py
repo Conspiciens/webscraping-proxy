@@ -22,7 +22,7 @@ user_agents = [
 ] 
 
 async def request_link(assesion, link: str) -> Optional[requests.Response]: 
-    stand_off = 6
+    stand_off = 3
     tries = 0 
     response = None
 
@@ -32,16 +32,17 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
             await asyncio.sleep(20) 
             response = await assesion.get(link, timeout=30)
             await response.html.arender(wait=2.0, timeout=20)
+            await asyncio.sleep(random.uniform(2, 5))
             response.raise_for_status()
             return response
         except HTTPError as e: 
             print(f"Error: {e}") 
             print(f"Seconds waiting: { 2 ** stand_off }") 
-            asession.close() 
+            assesion.close() 
 
-            await asyncio.sleep(2 ** stand_off)
-            asession = AsyncHTMLSession() 
-            asession.headers.update({
+            await asyncio.sleep(random.uniform(1, 2) ** stand_off)
+            assesion = AsyncHTMLSession() 
+            assesion.headers.update({
                 "User-Agent" : f'''{user_agent[1]}''',
                 "Connection": "keep-alive",
             }) 
