@@ -44,7 +44,7 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
             await asyncio.sleep(random.uniform(1, 2) ** stand_off)
             assesion = AsyncHTMLSession() 
             assesion.headers.update({
-                "User-Agent" : f'''{user_agent[1]}''',
+                "User-Agent" : f'''{user_agents[1]}''',
                 "Connection": "keep-alive",
             }) 
             stand_off += 1
