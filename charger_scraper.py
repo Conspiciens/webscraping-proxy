@@ -174,7 +174,7 @@ async def main():
     car_page_links = deque(list(set(car_page_links)))
 
     # Sleep a minute before making the next request
-    await asyncio.sleep(60) 
+    await asyncio.sleep(3600) 
 
     while len(car_page_links) > 0: 
          link = car_page_links.popleft(); 
