@@ -30,10 +30,10 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
     while tries < 5: 
         try: 
             print(f"Requesting link: {link}") 
-            await asyncio.sleep(20) 
+            await asyncio.sleep(0.9) 
+            await asyncio.sleep(random.uniform(2, 5))
             response = await assesion.get(link, timeout=30)
             await response.html.arender(wait=2.0, timeout=20)
-            await asyncio.sleep(random.uniform(2, 5))
             response.raise_for_status()
             return response
         except HTTPError as e: 
@@ -174,7 +174,7 @@ async def main():
     car_page_links = deque(list(set(car_page_links)))
 
     # Sleep a minute before making the next request
-    await asyncio.sleep(3600) 
+    await time.sleep(3600) 
 
     while len(car_page_links) > 0: 
          link = car_page_links.popleft(); 
@@ -185,7 +185,6 @@ async def main():
             break 
          ev = fetch_car_info(link, response) 
         
-         await asyncio.sleep(30) 
          if len(car_page_links) % 2 == 0: 
             await asyncio.sleep(10)
           
