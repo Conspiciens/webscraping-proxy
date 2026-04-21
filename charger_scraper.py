@@ -45,7 +45,6 @@ async def request_link(assesion, link: str) -> Optional[requests.Response]:
             assesion = AsyncHTMLSession() 
             assesion.headers.update({
                 "User-Agent" : f'''{user_agents[1]}''',
-                "Connection": "keep-alive",
             }) 
             stand_off += 1
             print(f"Issue with attempting to connect: {link}, Attempt: {tries}") 
@@ -173,7 +172,7 @@ async def main():
     car_page_links = deque(list(set(car_page_links)))
 
     # Sleep a minute before making the next request
-    await time.sleep(3600) 
+    await asyncio.sleep(3600) 
 
     while len(car_page_links) > 0: 
          link = car_page_links.popleft(); 
