@@ -1,142 +1,12 @@
 {
-"/car/2047/Mercedes-Benz-EQE-SUV-350-4MATIC": {
-    "link": "/car/2047/Mercedes-Benz-EQE-SUV-350-4MATIC",
-    "vehicle": "Mercedes-Benz-EQE-SUV-350-4MATIC",
+"/car/1422/Hyundai-Kona-Electric-39-kWh": {
+    "link": "/car/1422/Hyundai-Kona-Electric-39-kWh",
+    "vehicle": "Hyundai-Kona-Electric-39-kWh",
     "battery_type": "Lithium-ion",
-    "battery_size": "100.0 kWh",
-    "combined_mileage_km": "370 km",
+    "battery_size": "42.0 kWh",
+    "combined_mileage_km": "205 km",
     "port": "CCS",
-    "acceleration_0_60": "6.6 sec",
-    "discontinued": true
-},
-"/car/3062/Porsche-Taycan-GTS": {
-    "link": "/car/3062/Porsche-Taycan-GTS",
-    "vehicle": "Porsche-Taycan-GTS",
-    "battery_type": "Lithium-ion",
-    "battery_size": "105.0 kWh",
-    "combined_mileage_km": "450 km",
-    "port": "52 km/h",
-    "acceleration_0_60": "3.3 sec",
-    "discontinued": false
-},
-"/car/1783/BYD-TANG": {
-    "link": "/car/1783/BYD-TANG",
-    "vehicle": "BYD-TANG",
-    "battery_type": "Lithium-ion",
-    "battery_size": "88.0 kWh",
-    "combined_mileage_km": "305 km",
-    "port": "CCS",
-    "acceleration_0_60": "4.6 sec",
-    "discontinued": true
-},
-"/car/1029/Mitsubishi-i-MiEV": {
-    "link": "/car/1029/Mitsubishi-i-MiEV",
-    "vehicle": "Mitsubishi-i-MiEV",
-    "battery_type": "Lithium-ion",
-    "battery_size": "16.0 kWh",
-    "combined_mileage_km": "70 km",
-    "port": "CHAdeMO",
-    "acceleration_0_60": "15.9 sec",
-    "discontinued": true
-},
-"/car/2139/Mercedes-Benz-eVito-Tourer-Extra-Long-60-kWh": {
-    "link": "/car/2139/Mercedes-Benz-eVito-Tourer-Extra-Long-60-kWh",
-    "vehicle": "Mercedes-Benz-eVito-Tourer-Extra-Long-60-kWh",
-    "battery_type": "Lithium-ion",
-    "battery_size": "66.0 kWh",
-    "combined_mileage_km": "185 km",
-    "port": "CCS",
-    "acceleration_0_60": "12.0 sec",
-    "discontinued": false
-},
-"/car/1054/Tesla-Model-X-P90D": {
-    "link": "/car/1054/Tesla-Model-X-P90D",
-    "vehicle": "Tesla-Model-X-P90D",
-    "battery_type": "Lithium-ion",
-    "battery_size": "90.0 kWh",
-    "combined_mileage_km": "320 km",
-    "port": "Supercharger",
-    "acceleration_0_60": "4.0 sec",
-    "discontinued": true
-},
-"/car/1132/Smart-EQ-fortwo-coupe": {
-    "link": "/car/1132/Smart-EQ-fortwo-coupe",
-    "vehicle": "Smart-EQ-fortwo-coupe",
-    "battery_type": "Lithium-ion",
-    "battery_size": "17.6 kWh",
-    "combined_mileage_km": "85 km",
-    "port": "-",
-    "acceleration_0_60": "11.5 sec",
-    "discontinued": true
-},
-"/car/2124/Volvo-EC40-Single-Motor-ER": {
-    "link": "/car/2124/Volvo-EC40-Single-Motor-ER",
-    "vehicle": "Volvo-EC40-Single-Motor-ER",
-    "battery_type": "Lithium-ion",
-    "battery_size": "82.0 kWh",
-    "combined_mileage_km": "355 km",
-    "port": "CCS",
-    "acceleration_0_60": "7.3 sec",
-    "discontinued": true
-},
-"/car/1183/Tesla-Model-Y-Performance": {
-    "link": "/car/1183/Tesla-Model-Y-Performance",
-    "vehicle": "Tesla-Model-Y-Performance",
-    "battery_type": "Lithium-ion",
-    "battery_size": "78.1 kWh",
-    "combined_mileage_km": "360 km",
-    "port": "CCS",
-    "acceleration_0_60": "4.0 sec",
-    "discontinued": true
-},
-"/car/2011/Mercedes-Benz-EQS-580-4MATIC": {
-    "link": "/car/2011/Mercedes-Benz-EQS-580-4MATIC",
-    "vehicle": "Mercedes-Benz-EQS-580-4MATIC",
-    "battery_type": "Lithium-ion",
-    "battery_size": "120.0 kWh",
-    "combined_mileage_km": "495 km",
-    "port": "CCS",
-    "acceleration_0_60": "4.3 sec",
-    "discontinued": true
-},
-"/car/3223/Peugeot-e-208-54-kWh": {
-    "link": "/car/3223/Peugeot-e-208-54-kWh",
-    "vehicle": "Peugeot-e-208-54-kWh",
-    "battery_type": "Lithium-ion",
-    "battery_size": "54.0 kWh",
-    "combined_mileage_km": "280 km",
-    "port": "CCS",
-    "acceleration_0_60": "8.2 sec",
-    "discontinued": false
-},
-"/car/1524/MG-Marvel-R": {
-    "link": "/car/1524/MG-Marvel-R",
-    "vehicle": "MG-Marvel-R",
-    "battery_type": "Lithium-ion",
-    "battery_size": "75.0 kWh",
-    "combined_mileage_km": "310 km",
-    "port": "CCS",
-    "acceleration_0_60": "7.9 sec",
-    "discontinued": true
-},
-"/car/2102/Porsche-Taycan-Turbo": {
-    "link": "/car/2102/Porsche-Taycan-Turbo",
-    "vehicle": "Porsche-Taycan-Turbo",
-    "battery_type": "Lithium-ion",
-    "battery_size": "105.0 kWh",
-    "combined_mileage_km": "450 km",
-    "port": "52 km/h",
-    "acceleration_0_60": "2.7 sec",
-    "discontinued": false
-},
-"/car/1236/Renault-Zoe-ZE40-R110": {
-    "link": "/car/1236/Renault-Zoe-ZE40-R110",
-    "vehicle": "Renault-Zoe-ZE40-R110",
-    "battery_type": "Lithium-ion",
-    "battery_size": "44.1 kWh",
-    "combined_mileage_km": "215 km",
-    "port": "CCS",
-    "acceleration_0_60": "11.4 sec",
+    "acceleration_0_60": "9.9 sec",
     "discontinued": true
 },
 "/car/1676/BMW-i7-xDrive60": {
@@ -149,35 +19,125 @@
     "acceleration_0_60": "4.7 sec",
     "discontinued": false
 },
-"/car/3508/CUPRA-Raval-99-kW---37-kWh": {
-    "link": "/car/3508/CUPRA-Raval-99-kW---37-kWh",
-    "vehicle": "CUPRA-Raval-99-kW---37-kWh",
+"/car/3474/BYD-ATTO-3-Evo-RWD-Design": {
+    "link": "/car/3474/BYD-ATTO-3-Evo-RWD-Design",
+    "vehicle": "BYD-ATTO-3-Evo-RWD-Design",
     "battery_type": "Lithium-ion",
-    "battery_size": "39.0 kWh",
-    "combined_mileage_km": "195 km",
+    "battery_size": "76.0 kWh",
+    "combined_mileage_km": "350 km",
     "port": "CCS",
-    "acceleration_0_60": "9.9 sec",
+    "acceleration_0_60": "5.5 sec",
+    "discontinued": false
+},
+"/car/3127/Renault-4-E-Tech-52kWh-150hp": {
+    "link": "/car/3127/Renault-4-E-Tech-52kWh-150hp",
+    "vehicle": "Renault-4-E-Tech-52kWh-150hp",
+    "battery_type": "Lithium-ion",
+    "battery_size": "55.0 kWh",
+    "combined_mileage_km": "265 km",
+    "port": "CCS",
+    "acceleration_0_60": "8.2 sec",
+    "discontinued": false
+},
+"/car/1027/Citroen-C-Zero": {
+    "link": "/car/1027/Citroen-C-Zero",
+    "vehicle": "Citroen-C-Zero",
+    "battery_type": "Lithium-ion",
+    "battery_size": "16.0 kWh",
+    "combined_mileage_km": "75 km",
+    "port": "CHAdeMO",
+    "acceleration_0_60": "15.9 sec",
     "discontinued": true
 },
-"/car/1521/Renault-Megane-E-Tech-EV60-220hp": {
-    "link": "/car/1521/Renault-Megane-E-Tech-EV60-220hp",
-    "vehicle": "Renault-Megane-E-Tech-EV60-220hp",
+"/car/1315/Mercedes-Benz-EQV-300-Extra-Long": {
+    "link": "/car/1315/Mercedes-Benz-EQV-300-Extra-Long",
+    "vehicle": "Mercedes-Benz-EQV-300-Extra-Long",
     "battery_type": "Lithium-ion",
-    "battery_size": "65.0 kWh",
-    "combined_mileage_km": "320 km",
+    "battery_size": "100.0 kWh",
+    "combined_mileage_km": "270 km",
     "port": "CCS",
-    "acceleration_0_60": "7.4 sec",
+    "acceleration_0_60": "12.1 sec",
     "discontinued": true
 },
-"/car/1409/Mini-Cooper-SE": {
-    "link": "/car/1409/Mini-Cooper-SE",
-    "vehicle": "Mini-Cooper-SE",
+"/car/1476/Hyundai-IONIQ-5-Standard-Range-2WD": {
+    "link": "/car/1476/Hyundai-IONIQ-5-Standard-Range-2WD",
+    "vehicle": "Hyundai-IONIQ-5-Standard-Range-2WD",
     "battery_type": "Lithium-ion",
-    "battery_size": "32.6 kWh",
-    "combined_mileage_km": "150 km",
+    "battery_size": "58.0 kWh",
+    "combined_mileage_km": "250 km",
     "port": "CCS",
-    "acceleration_0_60": "7.3 sec",
+    "acceleration_0_60": "8.5 sec",
     "discontinued": true
+},
+"/car/3198/Zeekr-X-Long-Range-RWD": {
+    "link": "/car/3198/Zeekr-X-Long-Range-RWD",
+    "vehicle": "Zeekr-X-Long-Range-RWD",
+    "battery_type": "Lithium-ion",
+    "battery_size": "69.0 kWh",
+    "combined_mileage_km": "305 km",
+    "port": "CCS",
+    "acceleration_0_60": "5.6 sec",
+    "discontinued": false
+},
+"/car/1355/Audi-e-tron-55-quattro": {
+    "link": "/car/1355/Audi-e-tron-55-quattro",
+    "vehicle": "Audi-e-tron-55-quattro",
+    "battery_type": "Lithium-ion",
+    "battery_size": "95.0 kWh",
+    "combined_mileage_km": "315 km",
+    "port": "39 km/h",
+    "acceleration_0_60": "5.7 sec",
+    "discontinued": true
+},
+"/car/3187/Ford-Mustang-Mach-E-SR-RWD": {
+    "link": "/car/3187/Ford-Mustang-Mach-E-SR-RWD",
+    "vehicle": "Ford-Mustang-Mach-E-SR-RWD",
+    "battery_type": "Lithium-ion",
+    "battery_size": "78.0 kWh",
+    "combined_mileage_km": "325 km",
+    "port": "CCS",
+    "acceleration_0_60": "6.2 sec",
+    "discontinued": false
+},
+"/car/2224/Citroen-e-C3-Aircross-Comfort-Range-44-kWh": {
+    "link": "/car/2224/Citroen-e-C3-Aircross-Comfort-Range-44-kWh",
+    "vehicle": "Citroen-e-C3-Aircross-Comfort-Range-44-kWh",
+    "battery_type": "Lithium-ion",
+    "battery_size": "44.0 kWh",
+    "combined_mileage_km": "205 km",
+    "port": "CCS",
+    "acceleration_0_60": "12.9 sec",
+    "discontinued": false
+},
+"/car/1011/Nissan-LEAF-24-kWh": {
+    "link": "/car/1011/Nissan-LEAF-24-kWh",
+    "vehicle": "Nissan-LEAF-24-kWh",
+    "battery_type": "Lithium-ion",
+    "battery_size": "24.0 kWh",
+    "combined_mileage_km": "105 km",
+    "port": "CHAdeMO",
+    "acceleration_0_60": "11.9 sec",
+    "discontinued": true
+},
+"/car/1582/DS-Automobiles-DS-3-Crossback-E-Tense": {
+    "link": "/car/1582/DS-Automobiles-DS-3-Crossback-E-Tense",
+    "vehicle": "DS-Automobiles-DS-3-Crossback-E-Tense",
+    "battery_type": "Lithium-ion",
+    "battery_size": "50.0 kWh",
+    "combined_mileage_km": "225 km",
+    "port": "CCS",
+    "acceleration_0_60": "8.7 sec",
+    "discontinued": true
+},
+"/car/3070/BYD-SEALION-7-825-kWh-RWD-Comfort": {
+    "link": "/car/3070/BYD-SEALION-7-825-kWh-RWD-Comfort",
+    "vehicle": "BYD-SEALION-7-825-kWh-RWD-Comfort",
+    "battery_type": "Lithium-ion",
+    "battery_size": "84.0 kWh",
+    "combined_mileage_km": "355 km",
+    "port": "CCS",
+    "acceleration_0_60": "6.7 sec",
+    "discontinued": false
 },
 "/car/2202/MG-Cyberster-Trophy": {
     "link": "/car/2202/MG-Cyberster-Trophy",
@@ -189,74 +149,114 @@
     "acceleration_0_60": "5.0 sec",
     "discontinued": false
 },
-"/car/3507/CUPRA-Raval-85-kW---37-kWh": {
-    "link": "/car/3507/CUPRA-Raval-85-kW---37-kWh",
-    "vehicle": "CUPRA-Raval-85-kW---37-kWh",
+"/car/1055/Tesla-Model-X-P90DL": {
+    "link": "/car/1055/Tesla-Model-X-P90DL",
+    "vehicle": "Tesla-Model-X-P90DL",
     "battery_type": "Lithium-ion",
-    "battery_size": "39.0 kWh",
-    "combined_mileage_km": "200 km",
-    "port": "CCS",
-    "acceleration_0_60": "11.0 sec",
+    "battery_size": "90.0 kWh",
+    "combined_mileage_km": "320 km",
+    "port": "Supercharger",
+    "acceleration_0_60": "3.4 sec",
     "discontinued": true
 },
-"/car/2157/Volkswagen-ID-Buzz-LWB-GTX-": {
-    "link": "/car/2157/Volkswagen-ID-Buzz-LWB-GTX-",
-    "vehicle": "Volkswagen-ID-Buzz-LWB-GTX-",
+"/car/3502/Volkswagen-ID5-GTX": {
+    "link": "/car/3502/Volkswagen-ID5-GTX",
+    "vehicle": "Volkswagen-ID5-GTX",
     "battery_type": "Lithium-ion",
-    "battery_size": "91.0 kWh",
-    "combined_mileage_km": "325 km",
+    "battery_size": "82.0 kWh",
+    "combined_mileage_km": "360 km",
     "port": "CCS",
-    "acceleration_0_60": "6.5 sec",
+    "acceleration_0_60": "5.4 sec",
     "discontinued": false
 },
-"/car/2128/CUPRA-Born-VZ": {
-    "link": "/car/2128/CUPRA-Born-VZ",
-    "vehicle": "CUPRA-Born-VZ",
+"/car/2199/BMW-i4-eDrive40": {
+    "link": "/car/2199/BMW-i4-eDrive40",
+    "vehicle": "BMW-i4-eDrive40",
     "battery_type": "Lithium-ion",
-    "battery_size": "84.0 kWh",
-    "combined_mileage_km": "390 km",
+    "battery_size": "83.9 kWh",
+    "combined_mileage_km": "430 km",
     "port": "CCS",
     "acceleration_0_60": "5.6 sec",
+    "discontinued": true
+},
+"/car/1090/Smart-ForTwo-Electric-Drive": {
+    "link": "/car/1090/Smart-ForTwo-Electric-Drive",
+    "vehicle": "Smart-ForTwo-Electric-Drive",
+    "battery_type": "Lithium-ion",
+    "battery_size": "17.6 kWh",
+    "combined_mileage_km": "85 km",
+    "port": "-",
+    "acceleration_0_60": "11.5 sec",
+    "discontinued": true
+},
+"/car/1649/Genesis-GV60-Sport-Plus": {
+    "link": "/car/1649/Genesis-GV60-Sport-Plus",
+    "vehicle": "Genesis-GV60-Sport-Plus",
+    "battery_type": "Lithium-ion",
+    "battery_size": "77.4 kWh",
+    "combined_mileage_km": "310 km",
+    "port": "CCS",
+    "acceleration_0_60": "4.0 sec",
+    "discontinued": true
+},
+"/car/3462/Hyundai-Kona-Electric-486-kWh": {
+    "link": "/car/3462/Hyundai-Kona-Electric-486-kWh",
+    "vehicle": "Hyundai-Kona-Electric-486-kWh",
+    "battery_type": "Lithium-ion",
+    "battery_size": "51.0 kWh",
+    "combined_mileage_km": "245 km",
+    "port": "CCS",
+    "acceleration_0_60": "9.9 sec",
     "discontinued": false
 },
-"/car/1246/Ford-Mustang-Mach-E-GT": {
-    "link": "/car/1246/Ford-Mustang-Mach-E-GT",
-    "vehicle": "Ford-Mustang-Mach-E-GT",
+"/car/2275/Ford-Mustang-Mach-E-Rally": {
+    "link": "/car/2275/Ford-Mustang-Mach-E-Rally",
+    "vehicle": "Ford-Mustang-Mach-E-Rally",
     "battery_type": "Lithium-ion",
     "battery_size": "98.7 kWh",
     "combined_mileage_km": "350 km",
     "port": "CCS",
-    "acceleration_0_60": "4.4 sec",
+    "acceleration_0_60": "3.9 sec",
     "discontinued": true
 },
-"/car/1999/Smart-3-Proplus": {
-    "link": "/car/1999/Smart-3-Proplus",
-    "vehicle": "Smart-3-Proplus",
+"/car/3097/Skoda-Enyaq-85": {
+    "link": "/car/3097/Skoda-Enyaq-85",
+    "vehicle": "Skoda-Enyaq-85",
     "battery_type": "Lithium-ion",
-    "battery_size": "66.0 kWh",
-    "combined_mileage_km": "300 km",
+    "battery_size": "82.0 kWh",
+    "combined_mileage_km": "385 km",
     "port": "CCS",
-    "acceleration_0_60": "5.8 sec",
+    "acceleration_0_60": "6.7 sec",
     "discontinued": false
 },
-"/car/3495/Volkswagen-ID4-Pure": {
-    "link": "/car/3495/Volkswagen-ID4-Pure",
-    "vehicle": "Volkswagen-ID4-Pure",
+"/car/3064/Skywell-BE11-Standard-Range": {
+    "link": "/car/3064/Skywell-BE11-Standard-Range",
+    "vehicle": "Skywell-BE11-Standard-Range",
     "battery_type": "Lithium-ion",
-    "battery_size": "61.0 kWh",
-    "combined_mileage_km": "290 km",
+    "battery_size": "72.0 kWh",
+    "combined_mileage_km": "280 km",
     "port": "CCS",
-    "acceleration_0_60": "8.5 sec",
+    "acceleration_0_60": "9.6 sec",
     "discontinued": false
 },
-"/car/3038/Opel-Grandland-Electric-82-kWh": {
-    "link": "/car/3038/Opel-Grandland-Electric-82-kWh",
-    "vehicle": "Opel-Grandland-Electric-82-kWh",
+"/car/2150/Peugeot-e-5008-73-kWh-Dual-Motor": {
+    "link": "/car/2150/Peugeot-e-5008-73-kWh-Dual-Motor",
+    "vehicle": "Peugeot-e-5008-73-kWh-Dual-Motor",
     "battery_type": "Lithium-ion",
-    "battery_size": "86.0 kWh",
-    "combined_mileage_km": "355 km",
+    "battery_size": "77.0 kWh",
+    "combined_mileage_km": "305 km",
     "port": "CCS",
-    "acceleration_0_60": "9.0 sec",
+    "acceleration_0_60": "6.5 sec",
+    "discontinued": false
+},
+"/car/1281/Skoda-Enyaq-iV-80x": {
+    "link": "/car/1281/Skoda-Enyaq-iV-80x",
+    "vehicle": "Skoda-Enyaq-iV-80x",
+    "battery_type": "Lithium-ion",
+    "battery_size": "82.0 kWh",
+    "combined_mileage_km": "360 km",
+    "port": "CCS",
+    "acceleration_0_60": "6.9 sec",
     "discontinued": true
 },
 
